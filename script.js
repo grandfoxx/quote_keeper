@@ -92,16 +92,31 @@
       const card = document.createElement('div');
       card.className = 'qk-card';
 
-      const pageLabel = q.pages_read ? `${q.pages_read}페이지` : '';
-      const volumeLabel = [q.book_title, pageLabel].filter(Boolean).join(' ');
+      // book_title이 "시리즈명#58"처럼 series_name을 그대로 접두어로 포함하는 경우가
+      // 많아서, 그럴 땐 겹치는 부분을 잘라낸다. 다만 "#58" 같은 접미어는 실제 권/화가
+      // 아니라 내부 카탈로그 번호인 경우가 많으므로, "권"/"화" 글자가 들어있어 진짜
+      // 권차수로 보일 때만 남기고 그 외에는 버린다.
+      let volumePart = q.book_title || '';
+      if (q.series_name && volumePart.startsWith(q.series_name)) {
+        volumePart = volumePart.slice(q.series_name.length).trim();
+      }
+      if (!/[권화]/.test(volumePart)) {
+        volumePart = '';
+      }
+
+      // 페이지 번호는 리더 화면(폰트/화면 크기)에 따라 매번 달라지고 하이라이트를
+      // 만들 당시 값이 저장되지도 않아서, 시간이 지나면 예전 글귀의 페이지 표시가
+      // 어긋난다. 챕터는 폰트/화면 크기와 무관하게 고정되므로 그걸 기준으로 표시한다.
+      const chapterLabel = (q.format === 'epub' && q.chapter_idx !== null && q.chapter_idx !== undefined)
+        ? `${q.chapter_idx + 1}장`
+        : '';
+      const volumeLabel = [volumePart, chapterLabel].filter(Boolean).join(' ');
 
       const heading = q.series_name && q.series_name !== q.book_title
-        ? `${escapeHtml(q.series_name)} <span class="qk-muted">(${escapeHtml(volumeLabel)})</span>`
-        : (pageLabel ? `${escapeHtml(q.book_title)} <span class="qk-muted">(${escapeHtml(pageLabel)})</span>` : escapeHtml(q.book_title));
-
-      const chapterBadge = (q.format === 'epub' && q.chapter_idx !== null && q.chapter_idx !== undefined)
-        ? `<span class="qk-badge"><i class="fa-solid fa-bookmark"></i> ${q.chapter_idx + 1}장</span>`
-        : '';
+        ? (volumeLabel
+            ? `${escapeHtml(q.series_name)} <span class="qk-muted">(${escapeHtml(volumeLabel)})</span>`
+            : escapeHtml(q.series_name))
+        : (chapterLabel ? `${escapeHtml(q.book_title)} <span class="qk-muted">(${escapeHtml(chapterLabel)})</span>` : escapeHtml(q.book_title));
 
       card.innerHTML = `
         <div class="qk-card-header">
@@ -110,7 +125,6 @@
             <div>
               <div class="qk-book-title">${heading}</div>
               <div class="qk-meta-row">
-                ${chapterBadge}
                 <span class="qk-badge qk-badge-muted"><i class="fa-regular fa-clock"></i> ${formatDateTime(q.created_at)}</span>
               </div>
             </div>
