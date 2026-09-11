@@ -92,9 +92,12 @@
       const card = document.createElement('div');
       card.className = 'qk-card';
 
+      const pageLabel = q.pages_read ? `${q.pages_read}페이지` : '';
+      const volumeLabel = [q.book_title, pageLabel].filter(Boolean).join(' ');
+
       const heading = q.series_name && q.series_name !== q.book_title
-        ? `${escapeHtml(q.series_name)} <span class="qk-muted">· ${escapeHtml(q.book_title)}</span>`
-        : escapeHtml(q.book_title);
+        ? `${escapeHtml(q.series_name)} <span class="qk-muted">(${escapeHtml(volumeLabel)})</span>`
+        : (pageLabel ? `${escapeHtml(q.book_title)} <span class="qk-muted">(${escapeHtml(pageLabel)})</span>` : escapeHtml(q.book_title));
 
       const chapterBadge = (q.format === 'epub' && q.chapter_idx !== null && q.chapter_idx !== undefined)
         ? `<span class="qk-badge"><i class="fa-solid fa-bookmark"></i> ${q.chapter_idx + 1}장</span>`

@@ -89,6 +89,8 @@ class QuoteKeeperProvider(BaseMetadataProvider):
             "cover_image": self._resolve_cover_url(row["cover_image"]),
             "format": row["format"],
             "chapter_idx": row["chapter_idx"],
+            "pages_read": row["pages_read"],
+            "total_pages": row["total_pages"],
             "quote": row["quote"],
             "note": row["note"],
             "created_at": row["created_at"],
@@ -110,9 +112,11 @@ class QuoteKeeperProvider(BaseMetadataProvider):
                 SELECT a.id, a.book_id, a.format, a.chapter_idx, a.quote, a.note,
                        UNIX_TIMESTAMP(a.created_at) AS created_at,
                        UNIX_TIMESTAMP(a.updated_at) AS updated_at,
-                       b.title, b.series_name, b.cover_image
+                       b.title, b.series_name, b.cover_image, b.total_pages,
+                       up.pages_read
                 FROM book_annotations a
                 JOIN books b ON b.id = a.book_id
+                LEFT JOIN user_progress up ON up.book_id = a.book_id AND up.user_id = a.user_id
                 WHERE a.user_id = ? AND COALESCE(b.is_deleted, 0) = 0
                 ORDER BY a.created_at DESC
                 LIMIT ?
@@ -171,9 +175,11 @@ class QuoteKeeperProvider(BaseMetadataProvider):
                 SELECT a.id, a.book_id, a.format, a.chapter_idx, a.quote, a.note,
                        UNIX_TIMESTAMP(a.created_at) AS created_at,
                        UNIX_TIMESTAMP(a.updated_at) AS updated_at,
-                       b.title, b.series_name, b.cover_image
+                       b.title, b.series_name, b.cover_image, b.total_pages,
+                       up.pages_read
                 FROM book_annotations a
                 JOIN books b ON b.id = a.book_id
+                LEFT JOIN user_progress up ON up.book_id = a.book_id AND up.user_id = a.user_id
                 WHERE a.user_id = ? AND COALESCE(b.is_deleted, 0) = 0
                   AND (a.quote LIKE ? OR b.title LIKE ? OR b.series_name LIKE ? OR a.note LIKE ?)
                 ORDER BY a.created_at DESC
@@ -186,9 +192,11 @@ class QuoteKeeperProvider(BaseMetadataProvider):
                 SELECT a.id, a.book_id, a.format, a.chapter_idx, a.quote, a.note,
                        UNIX_TIMESTAMP(a.created_at) AS created_at,
                        UNIX_TIMESTAMP(a.updated_at) AS updated_at,
-                       b.title, b.series_name, b.cover_image
+                       b.title, b.series_name, b.cover_image, b.total_pages,
+                       up.pages_read
                 FROM book_annotations a
                 JOIN books b ON b.id = a.book_id
+                LEFT JOIN user_progress up ON up.book_id = a.book_id AND up.user_id = a.user_id
                 WHERE a.user_id = ? AND COALESCE(b.is_deleted, 0) = 0
                 ORDER BY a.created_at DESC
                 """,
