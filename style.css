@@ -1,0 +1,298 @@
+.qk-container {
+  padding: 24px;
+  width: 100%;
+  max-width: 1100px;
+  box-sizing: border-box;
+  margin: 0 auto;
+  color: var(--app-text-primary);
+  font-family: inherit;
+}
+
+.qk-header-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--app-border-light);
+}
+
+.qk-title-group h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 0 0 6px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.qk-subtitle {
+  margin: 0;
+  color: var(--app-text-muted);
+  font-size: 0.9rem;
+}
+
+.qk-type-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.qk-type-btn {
+  background: var(--app-bg-card);
+  border: 1px solid var(--app-border);
+  color: var(--app-text-muted);
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.qk-type-btn.active {
+  background: var(--app-accent);
+  border-color: var(--app-accent);
+  color: #fff;
+}
+
+.qk-stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.qk-stat-card {
+  background: var(--app-bg-card);
+  border: 1px solid var(--app-border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.qk-stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.qk-stat-label {
+  font-size: 0.8rem;
+  color: var(--app-text-muted);
+}
+
+.qk-toolbar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.qk-input {
+  flex: 1;
+  background: var(--app-input-bg, var(--app-bg-card));
+  border: 1px solid var(--app-border);
+  color: var(--app-text-primary);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 0.9rem;
+}
+
+.qk-btn {
+  border-radius: 8px;
+  padding: 9px 16px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  border: 1px solid var(--app-border);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.qk-btn-ghost {
+  background: var(--app-bg-card);
+  color: var(--app-text-muted);
+}
+
+.qk-btn-primary {
+  background: var(--app-accent);
+  border-color: var(--app-accent);
+  color: #fff;
+}
+
+.qk-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.qk-empty {
+  color: var(--app-text-muted);
+  text-align: center;
+  padding: 40px 20px;
+  line-height: 1.6;
+}
+
+.qk-card {
+  background: var(--app-bg-card);
+  border: 1px solid var(--app-border);
+  border-radius: 12px;
+  padding: 16px 18px;
+}
+
+.qk-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.qk-card-book {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  min-width: 0;
+}
+
+.qk-cover {
+  width: 40px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+  background: var(--app-border-light);
+}
+
+.qk-cover-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--app-text-muted);
+}
+
+.qk-book-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.qk-muted {
+  color: var(--app-text-muted);
+  font-weight: 400;
+}
+
+.qk-meta-row {
+  display: flex;
+  gap: 6px;
+  margin-top: 4px;
+  flex-wrap: wrap;
+}
+
+.qk-badge {
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--app-bg-hover, rgba(128,128,128,0.15));
+  color: var(--app-text-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.qk-card-actions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.qk-icon-btn {
+  background: transparent;
+  border: 1px solid var(--app-border);
+  color: var(--app-text-muted);
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.qk-icon-btn:hover {
+  color: var(--app-text-primary);
+}
+
+.qk-quote {
+  margin: 0;
+  padding: 10px 14px;
+  border-left: 3px solid var(--app-accent);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  white-space: pre-wrap;
+}
+
+.qk-note {
+  margin-top: 8px;
+  padding: 8px 12px;
+  background: var(--app-border-light);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: var(--app-text-muted);
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  white-space: pre-wrap;
+}
+
+/* ── 메모 수정 모달 ── */
+.qk-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.qk-modal-backdrop[hidden] {
+  display: none;
+}
+
+.qk-modal {
+  background: var(--app-bg-card);
+  border: 1px solid var(--app-border);
+  border-radius: 12px;
+  padding: 20px;
+  width: 90%;
+  max-width: 420px;
+}
+
+.qk-modal h3 {
+  margin: 0 0 12px 0;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.qk-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--app-input-bg, var(--app-bg-card));
+  border: 1px solid var(--app-border);
+  color: var(--app-text-primary);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 0.9rem;
+  resize: vertical;
+  font-family: inherit;
+}
+
+.qk-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 14px;
+}

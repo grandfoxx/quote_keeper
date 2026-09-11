@@ -1,0 +1,50 @@
+<div class="qk-container">
+  <div class="qk-header-banner">
+    <div class="qk-title-group">
+      <h2><i class="fa-solid fa-quote-right"></i> 글귀 모음</h2>
+      <p class="qk-subtitle">EPUB/TXT를 읽다가 하이라이트(형광펜)를 만들면 자동으로 여기에 모입니다. 하이라이트를 지우면 여기서도 함께 사라져요.</p>
+    </div>
+    <div class="qk-type-actions">
+      <button class="qk-type-btn active" data-type="general"><i class="fa-solid fa-book"></i> 일반</button>
+      <button class="qk-type-btn" data-type="adult"><i class="fa-solid fa-lock"></i> 성인</button>
+      <button class="qk-type-btn" data-type="audiobook"><i class="fa-solid fa-headphones"></i> 오디오북</button>
+      <button class="qk-type-btn" data-type="video"><i class="fa-solid fa-film"></i> 영상</button>
+    </div>
+  </div>
+
+  <div class="qk-stats-row" id="qk-stats-row">
+    <div class="qk-stat-card">
+      <span class="qk-stat-value" id="qk-stat-total">-</span>
+      <span class="qk-stat-label">저장한 글귀</span>
+    </div>
+    <div class="qk-stat-card">
+      <span class="qk-stat-value" id="qk-stat-books">-</span>
+      <span class="qk-stat-label">출처 책 수</span>
+    </div>
+    <div class="qk-stat-card">
+      <span class="qk-stat-value" id="qk-stat-recent">-</span>
+      <span class="qk-stat-label">최근 30일</span>
+    </div>
+  </div>
+
+  <div class="qk-toolbar">
+    <input type="text" id="qk-search" class="qk-input" placeholder="책 제목, 인용구, 메모로 검색...">
+    <button type="button" class="qk-btn qk-btn-ghost" id="qk-refresh"><i class="fa-solid fa-rotate"></i> 새로고침</button>
+  </div>
+
+  <div class="qk-list" id="qk-list">
+    <p class="qk-empty" id="qk-empty" hidden>아직 만든 하이라이트가 없습니다. EPUB/TXT 리더에서 문장을 드래그해 하이라이트를 만들면 자동으로 여기에 모여요.</p>
+  </div>
+</div>
+
+<!-- 메모 수정 모달 -->
+<div class="qk-modal-backdrop" id="qk-note-modal" hidden>
+  <div class="qk-modal">
+    <h3><i class="fa-solid fa-pen"></i> 메모 수정</h3>
+    <textarea id="qk-note-input" class="qk-textarea" rows="4" placeholder="이 글귀에 대한 생각을 적어보세요..."></textarea>
+    <div class="qk-modal-actions">
+      <button type="button" class="qk-btn qk-btn-ghost" id="qk-note-cancel">취소</button>
+      <button type="button" class="qk-btn qk-btn-primary" id="qk-note-save">저장</button>
+    </div>
+  </div>
+</div>
