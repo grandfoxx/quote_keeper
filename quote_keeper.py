@@ -84,6 +84,7 @@ class QuoteKeeperProvider(BaseMetadataProvider):
         return {
             "id": row["id"],
             "book_id": row["book_id"],
+            "library_id": row["library_id"],
             "book_title": row["title"],
             "series_name": row["series_name"],
             "cover_image": self._resolve_cover_url(row["cover_image"]),
@@ -110,7 +111,7 @@ class QuoteKeeperProvider(BaseMetadataProvider):
                 SELECT a.id, a.book_id, a.format, a.chapter_idx, a.quote, a.note,
                        UNIX_TIMESTAMP(a.created_at) AS created_at,
                        UNIX_TIMESTAMP(a.updated_at) AS updated_at,
-                       b.title, b.series_name, b.cover_image
+                       b.title, b.series_name, b.cover_image, b.library_id
                 FROM book_annotations a
                 JOIN books b ON b.id = a.book_id
                 WHERE a.user_id = ? AND COALESCE(b.is_deleted, 0) = 0
@@ -171,7 +172,7 @@ class QuoteKeeperProvider(BaseMetadataProvider):
                 SELECT a.id, a.book_id, a.format, a.chapter_idx, a.quote, a.note,
                        UNIX_TIMESTAMP(a.created_at) AS created_at,
                        UNIX_TIMESTAMP(a.updated_at) AS updated_at,
-                       b.title, b.series_name, b.cover_image
+                       b.title, b.series_name, b.cover_image, b.library_id
                 FROM book_annotations a
                 JOIN books b ON b.id = a.book_id
                 WHERE a.user_id = ? AND COALESCE(b.is_deleted, 0) = 0
@@ -186,7 +187,7 @@ class QuoteKeeperProvider(BaseMetadataProvider):
                 SELECT a.id, a.book_id, a.format, a.chapter_idx, a.quote, a.note,
                        UNIX_TIMESTAMP(a.created_at) AS created_at,
                        UNIX_TIMESTAMP(a.updated_at) AS updated_at,
-                       b.title, b.series_name, b.cover_image
+                       b.title, b.series_name, b.cover_image, b.library_id
                 FROM book_annotations a
                 JOIN books b ON b.id = a.book_id
                 WHERE a.user_id = ? AND COALESCE(b.is_deleted, 0) = 0

@@ -156,6 +156,14 @@
   min-width: 0;
 }
 
+.qk-clickable {
+  cursor: pointer;
+}
+
+.qk-clickable:hover .qk-book-title {
+  text-decoration: underline;
+}
+
 .qk-cover {
   width: 40px;
   height: 56px;

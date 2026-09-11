@@ -120,7 +120,7 @@
 
       card.innerHTML = `
         <div class="qk-card-header">
-          <div class="qk-card-book">
+          <div class="qk-card-book qk-clickable" title="책으로 이동">
             ${q.cover_image ? `<img src="${escapeHtml(q.cover_image)}" class="qk-cover" alt="cover">` : '<div class="qk-cover qk-cover-empty"><i class="fa-solid fa-book"></i></div>'}
             <div>
               <div class="qk-book-title">${heading}</div>
@@ -140,6 +140,11 @@
 
       card.querySelector('.qk-edit-note').addEventListener('click', () => openNoteModal(q));
       card.querySelector('.qk-delete').addEventListener('click', () => deleteQuote(q.id));
+      card.querySelector('.qk-card-book').addEventListener('click', (e) => {
+        if (typeof window.openBookDetail === 'function') {
+          window.openBookDetail(e, q.series_name || q.book_title, q.library_id, q.book_id, q.book_title);
+        }
+      });
 
       frag.appendChild(card);
     });
